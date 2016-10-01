@@ -1,3 +1,7 @@
+[![Code Climate](https://codeclimate.com/github/dpca/slack-emoji-bot/badges/gpa.svg)](https://codeclimate.com/github/dpca/slack-emoji-bot)
+
+* * *
+
 # slack-emoji-bot
 
 Detects new slack emoji and posts about them in a channel
