@@ -17,3 +17,12 @@ bundle install
 ```
 ./emoji-bot.rb
 ```
+
+## Cron
+
+You can run the emoji-bot automatically by adding something like the following
+to your crontab (`crontab -e`):
+
+```
+0 * * * * cd /home/USER/slack-emoji-bot && /usr/local/bin/ruby emoji-bot.rb >> /home/USER/slack-emoji-bot/cronOutput.txt 2>&1
+```
