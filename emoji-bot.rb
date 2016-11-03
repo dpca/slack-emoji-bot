@@ -13,7 +13,7 @@ Slack.configure do |config|
   config.token = ENV['SLACK_API_TOKEN']
 end
 
-logger = Logger.new(STDOUT)
+Log = Logger.new(STDOUT)
 
 # Saves and loads local emoji to/from emoji.txt
 class LocalEmoji
@@ -105,18 +105,18 @@ class Bot
   end
 
   def run
-    logger.info("Connection: #{client.auth_test}")
+    Log.info("Connection: #{client.auth_test}")
     if slack_emoji.ok?
       if new_emoji.any?
-        logger.info("Messaging slack with new emoji: #{new_emoji.to_a.join(', ')}")
+        Log.info("Messaging slack with new emoji: #{new_emoji.to_a.join(', ')}")
         message_slack
-        logger.info('Saving emoji')
+        Log.info('Saving emoji')
         save_emoji
       else
-        logger.info('No new emoji')
+        Log.info('No new emoji')
       end
     else
-      logger.warn("Oops, response from Slack was not ok: #{slack_emoji.response}")
+      Log.warn("Oops, response from Slack was not ok: #{slack_emoji.response}")
     end
   end
 
@@ -158,10 +158,10 @@ end.parse!
 bot = Bot.new(Slack::Web::Client.new)
 
 if options[:setup]
-  logger.info('Saving emoji')
+  Log.info('Saving emoji')
   bot.save_emoji
 elsif !LocalEmoji.exists?
-  logger.warn('Oops! You need to run `./emoji-bot.rb --setup`')
+  Log.warn('Oops! You need to run `./emoji-bot.rb --setup`')
 else
   bot.run
 end
