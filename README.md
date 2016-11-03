@@ -6,6 +6,16 @@
 
 Detects new slack emoji and posts about them in a channel
 
+## Docker
+
+The simplest way to run is with docker, which will check every hour for new
+emoji in a container:
+
+```bash
+docker build -t emoji-bot .
+docker run -e SLACK_API_TOKEN="$TOKEN" -e SLACK_CHANNEL="#emojis" --rm -it emoji-bot
+```
+
 ## Setup
 
 First, you need to set your `SLACK_API_TOKEN` and `SLACK_CHANNEL` to message in
