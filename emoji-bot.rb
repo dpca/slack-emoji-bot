@@ -105,7 +105,6 @@ class Bot
   end
 
   def run
-    Log.info("Connection: #{client.auth_test}")
     if slack_emoji.ok?
       if new_emoji.any?
         Log.info("Messaging slack with new emoji: #{new_emoji.to_a.join(', ')}")
@@ -155,7 +154,9 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-bot = Bot.new(Slack::Web::Client.new)
+client = Slack::Web::Client.new
+Log.info("Connection: #{client.auth_test}")
+bot = Bot.new(client)
 
 if options[:setup]
   Log.info('Saving emoji')
