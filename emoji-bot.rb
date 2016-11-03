@@ -2,6 +2,7 @@
 
 # frozen_string_literal: true
 
+require 'logger'
 require 'rubygems'
 require 'bundler'
 Bundler.require(:default)
@@ -11,6 +12,8 @@ Dotenv.load
 Slack.configure do |config|
   config.token = ENV['SLACK_API_TOKEN']
 end
+
+logger = Logger.new(STDOUT)
 
 # Saves and loads local emoji to/from emoji.txt
 class LocalEmoji
@@ -102,18 +105,18 @@ class Bot
   end
 
   def run
-    puts "Connection: #{client.auth_test}"
+    logger.info("Connection: #{client.auth_test}")
     if slack_emoji.ok?
       if new_emoji.any?
-        puts "Messaging slack with new emoji: #{new_emoji.to_a.join(', ')}"
+        logger.info("Messaging slack with new emoji: #{new_emoji.to_a.join(', ')}")
         message_slack
-        puts 'Saving emoji'
+        logger.info('Saving emoji')
         save_emoji
       else
-        puts 'No new emoji'
+        logger.info('No new emoji')
       end
     else
-      puts "Oops, response from Slack was not ok: #{slack_emoji.response}"
+      logger.warn("Oops, response from Slack was not ok: #{slack_emoji.response}")
     end
   end
 
@@ -155,10 +158,10 @@ end.parse!
 bot = Bot.new(Slack::Web::Client.new)
 
 if options[:setup]
-  puts 'Saving emoji'
+  logger.info('Saving emoji')
   bot.save_emoji
 elsif !LocalEmoji.exists?
-  puts 'Oops! You need to run `./emoji-bot.rb --setup`'
+  logger.warn('Oops! You need to run `./emoji-bot.rb --setup`')
 else
   bot.run
 end
