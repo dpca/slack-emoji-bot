@@ -8,15 +8,31 @@ Detects new slack emoji and posts about them in a channel
 
 ## Docker
 
-The simplest way to run is with docker, which will check every hour for new
-emoji in a container:
+The simplest way to run is with [docker](https://www.docker.com/), which will
+check every hour for new emoji in a container (run in detached mode with `-d`
+to run in the background):
 
 ```bash
 docker build -t emoji-bot .
-docker run -e SLACK_API_TOKEN="$TOKEN" -e SLACK_CHANNEL="#emojis" --rm -it emoji-bot
+docker run --rm -it \
+  -e SLACK_API_TOKEN="$TOKEN" \
+  -e SLACK_CHANNEL="#emojis" \
+  -e SLACK_USERNAME="emoji-bot" \
+  -e SLACK_ICON_EMOJI=":parrot:" \
+  emoji-bot
 ```
 
-## Setup
+You can request a token for testing purposes from
+https://api.slack.com/docs/oauth-test-tokens but should use a bot token from
+https://my.slack.com/services/new/bot for a real deployment. Read more about
+bot users here: https://api.slack.com/bot-users
+
+If not provided, SLACK_USERNAME defaults to "emoji-bot" and SLACK_ICON_EMOJI
+defaults to [":parrot:"](http://cultofthepartyparrot.com/).
+
+## Running locally
+
+### Setup
 
 First, you need to set your `SLACK_API_TOKEN` and `SLACK_CHANNEL` to message in
 `.env`. Then, save initial emoji:
@@ -26,13 +42,13 @@ bundle install
 ./emoji-bot.rb --setup
 ```
 
-## Run
+### Run
 
 ```
 ./emoji-bot.rb
 ```
 
-## Cron
+### Cron
 
 You can run the emoji-bot automatically by adding something like the following
 to your crontab (`crontab -e`):
