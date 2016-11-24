@@ -9,11 +9,20 @@ Bundler.require(:default)
 
 Dotenv.load
 
+Log = Logger.new(STDOUT)
+
+REQUIRED_ENV = %w(SLACK_API_TOKEN SLACK_CHANNEL)
+
+REQUIRED_ENV.each do |key|
+  unless ENV.key?(key)
+    Log.warn("Oops! Must provide the following environment variables: #{REQUIRED_ENV.join(' ')}")
+    exit
+  end
+end
+
 Slack.configure do |config|
   config.token = ENV['SLACK_API_TOKEN']
 end
-
-Log = Logger.new(STDOUT)
 
 # Saves and loads local emoji to/from emoji.txt
 class LocalEmoji
@@ -80,8 +89,8 @@ class SlackMessager
       channel: ENV['SLACK_CHANNEL'],
       text: channel_text(new_emoji),
       as_user: false,
-      username: 'emoji-bot',
-      icon_emoji: ':parrot:',
+      username: ENV['SLACK_USERNAME'] || 'emoji-bot',
+      icon_emoji: ENV['SLACK_ICON_EMOJI'] || ':parrot:',
     )
   end
 
