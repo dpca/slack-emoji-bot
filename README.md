@@ -4,6 +4,8 @@
 
 # slack-emoji-bot
 
+![Emoji bot](/images/emojibot.png)
+
 Simple bot that detects new Slack emoji added through
 https://my.slack.com/customize/emoji and notifies a channel about them.
 Intended to run on a schedule, such as every hour, using cron.
