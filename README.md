@@ -4,9 +4,22 @@
 
 # slack-emoji-bot
 
-Detects new slack emoji and posts about them in a channel
+Simple bot that detects new Slack emoji added through
+https://my.slack.com/customize/emoji and notifies a channel about them.
+Intended to run on a schedule, such as every hour, using cron.
 
-## Docker
+[Emoji-bot](emoji-bot.rb) uses the
+[slack-ruby-client](https://github.com/slack-ruby/slack-ruby-client) gem to
+easily interact with the Slack API. On initial run, the
+[emoji.list](https://api.slack.com/methods/emoji.list) method is called and the
+list of all emoji is saved in an `emoji.txt` file. Every subsequent time the
+script is run, it asks Slack for the emoji list again and compares the existing
+emoji and the new list. If any new emoji are found, the
+[chat.postMessage](https://api.slack.com/methods/chat.postMessage) method is
+called with a random response from `responses.txt` and the new emoji. Finally,
+the new list of emoji are saved in `emoji.txt`.
+
+## Running with Docker
 
 The simplest way to run is with [docker](https://www.docker.com/), which will
 check every hour for new emoji in a container:
