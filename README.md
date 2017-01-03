@@ -28,14 +28,13 @@ The simplest way to run is with [docker](https://www.docker.com/), which will
 check every hour for new emoji in a container:
 
 ```bash
-docker build -t emoji-bot .
 docker run -it -d \
   -e SLACK_API_TOKEN="$TOKEN" \
   -e SLACK_CHANNEL="#emojis" \
   -e SLACK_USERNAME="emoji-bot" \
   -e SLACK_ICON_EMOJI=":parrot:" \
   --name emoji-bot \
-  emoji-bot
+  dpca/slack-emoji-bot
 ```
 
 You can see if the container is up by using `docker ps`, and check its logs
