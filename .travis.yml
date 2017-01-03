@@ -1,0 +1,16 @@
+sudo: required
+
+language: ruby
+
+services:
+  - docker
+
+rvm:
+  - 2.4
+
+script:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+    docker build -t dpca/slack-emoji-bot .
+    docker push dpca/slack-emoji-bot
+    fi
