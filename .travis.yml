@@ -10,7 +10,7 @@ rvm:
 
 script:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-    docker build -t dpca/slack-emoji-bot .
-    docker push dpca/slack-emoji-bot
+    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+    docker build -t dpca/slack-emoji-bot .;
+    docker push dpca/slack-emoji-bot;
     fi
