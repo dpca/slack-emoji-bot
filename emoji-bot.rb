@@ -3,6 +3,7 @@
 # frozen_string_literal: true
 
 require 'logger'
+require 'optparse'
 require 'rubygems'
 require 'bundler'
 Bundler.require(:default)
