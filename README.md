@@ -1,8 +1,3 @@
-[![Build Status](https://travis-ci.org/dpca/slack-emoji-bot.svg?branch=master)](https://travis-ci.org/dpca/slack-emoji-bot)
-[![Code Climate](https://codeclimate.com/github/dpca/slack-emoji-bot/badges/gpa.svg)](https://codeclimate.com/github/dpca/slack-emoji-bot)
-
-* * *
-
 # slack-emoji-bot
 
 ![Emoji bot](/images/emojibot.png)
@@ -34,7 +29,7 @@ docker run -it -d \
   -e SLACK_USERNAME="emoji-bot" \
   -e SLACK_ICON_EMOJI=":parrot:" \
   --name emoji-bot \
-  dpca/slack-emoji-bot
+  ghcr.io/dpca/slack-emoji-bot:master
 ```
 
 You can see if the container is up by using `docker ps`, and check its logs
