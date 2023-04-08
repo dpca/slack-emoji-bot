@@ -1,8 +1,8 @@
-FROM ruby:3.1-alpine
+FROM ruby:3.2-alpine
 
 RUN apk add --update --no-cache build-base openssl
 
-RUN gem install bundler:2.4.3
+RUN gem install bundler:2.4.10
 
 # throw errors if Gemfile has been modified since Gemfile.lock
 RUN bundle config --global frozen 1
