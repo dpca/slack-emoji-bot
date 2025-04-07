@@ -1,34 +1,43 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    dotenv (2.8.1)
-    faraday (2.7.4)
-      faraday-net_http (>= 2.0, < 3.1)
-      ruby2_keywords (>= 0.0.4)
-    faraday-mashify (0.1.1)
+    dotenv (3.1.7)
+    faraday (2.12.2)
+      faraday-net_http (>= 2.0, < 3.5)
+      json
+      logger
+    faraday-mashify (1.0.0)
       faraday (~> 2.0)
       hashie
-    faraday-multipart (1.0.4)
-      multipart-post (~> 2)
-    faraday-net_http (3.0.2)
-    gli (2.21.0)
+    faraday-multipart (1.1.0)
+      multipart-post (~> 2.0)
+    faraday-net_http (3.4.0)
+      net-http (>= 0.5.0)
+    gli (2.22.2)
+      ostruct
     hashie (5.0.0)
-    multipart-post (2.3.0)
-    ruby2_keywords (0.0.5)
-    slack-ruby-client (2.1.0)
+    json (2.10.2)
+    logger (1.7.0)
+    multipart-post (2.4.1)
+    net-http (0.6.0)
+      uri
+    ostruct (0.6.1)
+    slack-ruby-client (2.5.2)
       faraday (>= 2.0)
       faraday-mashify
       faraday-multipart
       gli
       hashie
+      logger
+    uri (1.0.3)
 
 PLATFORMS
-  x86_64-darwin-21
-  x86_64-linux
+  x86_64-darwin-24
+  x86_64-linux-musl
 
 DEPENDENCIES
   dotenv
   slack-ruby-client
 
 BUNDLED WITH
-   2.4.10
+   2.6.7

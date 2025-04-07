@@ -1,6 +1,8 @@
-FROM ruby:3.2-alpine
+FROM ruby:3.4-alpine
 
-RUN gem install bundler:2.4.10
+RUN apk add build-base
+
+RUN gem install bundler:2.6.7
 
 # throw errors if Gemfile has been modified since Gemfile.lock
 RUN bundle config --global frozen 1
