@@ -89,7 +89,6 @@ class SlackMessager
     client.chat_postMessage(
       channel: ENV['SLACK_CHANNEL'],
       text: channel_text(new_emoji),
-      as_user: false,
       username: ENV['SLACK_USERNAME'] || 'emoji-bot',
       icon_emoji: ENV['SLACK_ICON_EMOJI'] || ':parrot:',
     )
